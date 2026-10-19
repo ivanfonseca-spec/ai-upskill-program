@@ -1,7 +1,13 @@
 """Complete pipeline: Fetch -> Filter."""
 
 import asyncio
+import sys
 from pathlib import Path
+
+# Allow running this file directly ("python src/pipeline.py"): Python puts the
+# script's own directory (src/) on sys.path[0] instead of the project root,
+# so "from src.orchestrator..." below fails with ModuleNotFoundError otherwise.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.orchestrator import FetchOrchestrator
 from src.fetchers.hackernews_fetcher import HackerNewsFetcher
